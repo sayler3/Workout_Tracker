@@ -15,6 +15,9 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+require("./routes/clientRoutes")(app);
+// require("./routes/apiRoutes")(app);
+
 app.listen(PORT, function () {
 	console.log(`Listening on http://localhost:${PORT}`);
 });
