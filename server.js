@@ -6,10 +6,10 @@ const logger = require("morgan");
 const app = express();
 app.use(logger("dev"));
 
-// setting port the deploy and localhost
+// setting port for deployment and running localhost
 const PORT = process.env.PORT || 3000;
 
-// setting up database connection
+// setting up database connection for deployment and localhost
 mongoose
 	.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 		useNewUrlParser: true,
