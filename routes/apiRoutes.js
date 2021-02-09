@@ -1,7 +1,7 @@
 const Workout = require("../models/workout");
 
 module.exports = (app) => {
-	//find all workouts
+	//find last workout for dashboard
 	app.get("/api/workouts", (req, res) => {
 		Workout.find({});
 		Workout.aggregate([
@@ -48,24 +48,27 @@ module.exports = (app) => {
 			});
 	});
 
-	// find range
-	// app.get("/api/workouts/range", (req, res) => {
-	// 	Workout.find({});
-	// 	Workout.aggregate([
-	// 		{
-	// 			$addFields: {
-	// 				totalDuration: {
-	// 					$sum: "$exercises.duration",
-	// 				},
-	// 			},
-	// 		},
-	// 	])
-	// 		.then((data) => {
-	// 			console.log(data);
-	// 			res.json(data);
-	// 		})
-	// 		.catch((err) => {
-	// 			res.status(400).json(err);
-	// 		});
-	// });
+	// find range of last 7 days for stats page
+	app.get("/api/workouts/range", (req, res) => {
+		Workout.find({});
+		Workout.aggregate([
+			{
+				$addFields: {
+					totalDuration: {
+						$sum: "$exercises.duration",
+					},
+				},
+			},
+		])
+			.sort({ day: -1 })
+			.limit(7)
+			.sort({ day: 1 })
+			.then((data) => {
+				console.log(data);
+				res.json(data);
+			})
+			.catch((err) => {
+				res.status(400).json(err);
+			});
+	});
 };
