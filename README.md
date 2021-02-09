@@ -10,7 +10,7 @@ This app has been deployed via Heroku to view click bellow:
 
 ## Demo video
 
-![demo of application]()
+![demo of application](assets/img/FitnessTracker.gif)
 
 ## Table of Contents
 
