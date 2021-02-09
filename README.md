@@ -4,6 +4,16 @@
 
 ## Description
 
+This is a nodejs application where the user is able to do the following:
+
+- Add exercises to the most recent workout plan.
+
+- Add new exercises to a new workout plan.
+
+- View the combined weight of multiple exercises from the past seven workouts on the stats page.
+
+- View the total duration of each workout from the past seven workouts on the stats page.
+
 This app has been deployed via Heroku to view click bellow:
 
 [**WORKOUT_TRACKER**]()
