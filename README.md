@@ -16,7 +16,7 @@ This is a nodejs application where the user is able to do the following:
 
 This app has been deployed via Heroku to view click bellow:
 
-[**WORKOUT_TRACKER**]()
+[**WORKOUT_TRACKER**](https://workout-tracker-sa.herokuapp.com/)
 
 ## Demo video
 
