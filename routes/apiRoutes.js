@@ -3,7 +3,17 @@ const Workout = require("../models/workout");
 module.exports = (app) => {
 	//find all workouts
 	app.get("/api/workouts", (req, res) => {
-		Workout.find({})
+		Workout.find({});
+		Workout.aggregate([
+			{
+				$addFields: {
+					totalDuration: {
+						$sum: "$exercises.duration",
+					},
+				},
+			},
+		])
+			.sort({ date: -1 })
 			.then((found) => {
 				res.json(found);
 			})
@@ -37,4 +47,25 @@ module.exports = (app) => {
 				res.status(400).json(err);
 			});
 	});
+
+	// find range
+	// app.get("/api/workouts/range", (req, res) => {
+	// 	Workout.find({});
+	// 	Workout.aggregate([
+	// 		{
+	// 			$addFields: {
+	// 				totalDuration: {
+	// 					$sum: "$exercises.duration",
+	// 				},
+	// 			},
+	// 		},
+	// 	])
+	// 		.then((data) => {
+	// 			console.log(data);
+	// 			res.json(data);
+	// 		})
+	// 		.catch((err) => {
+	// 			res.status(400).json(err);
+	// 		});
+	// });
 };
